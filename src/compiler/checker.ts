@@ -37577,7 +37577,7 @@ namespace ts {
                 return;
             }
             // Grammar checking
-            if (!checkGrammarDecoratorsAndModifiers(node) && hasEffectiveModifiers(node)) {
+            if (node.isExportEquals && !checkGrammarDecoratorsAndModifiers(node) && hasEffectiveModifiers(node)) {
                 grammarErrorOnFirstToken(node, Diagnostics.An_export_assignment_cannot_have_modifiers);
             }
             if (node.expression.kind === SyntaxKind.Identifier) {

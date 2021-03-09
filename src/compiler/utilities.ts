@@ -4720,7 +4720,7 @@ namespace ts {
      * NOTE: This function does not use `parent` pointers and will not include modifiers from JSDoc.
      */
     export function getSyntacticModifierFlagsNoCache(node: Node): ModifierFlags {
-        let flags = modifiersToFlags(node.modifiers);
+        let flags = (isExportAssignment(node) && !node.isExportEquals) ? ModifierFlags.None : modifiersToFlags(node.modifiers);
         if (node.flags & NodeFlags.NestedNamespace || (node.kind === SyntaxKind.Identifier && (<Identifier>node).isInJSDocNamespace)) {
             flags |= ModifierFlags.Export;
         }
